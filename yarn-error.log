@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/Cellar/yarn/1.17.0/libexec/bin/yarn.js add bcrypjs
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.17.0/libexec/bin/yarn.js add chaiHttp
 
 PATH: 
   /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
@@ -14,7 +14,7 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/bcrypjs: Not found
+  Error: https://registry.yarnpkg.com/chaiHttp: Not found
       at Request.params.callback [as _callback] (/usr/local/Cellar/yarn/1.17.0/libexec/lib/cli.js:66823:18)
       at Request.self.callback (/usr/local/Cellar/yarn/1.17.0/libexec/lib/cli.js:140439:22)
       at Request.emit (events.js:189:13)
@@ -49,9 +49,13 @@ npm manifest:
     "homepage": "https://github.com/lambda-andela-48-8/chef-portfolio-backend#readme",
     "dependencies": {
       "@babel/register": "^7.4.4",
+      "bcryptjs": "^2.4.3",
       "chai": "^4.2.0",
       "cors": "^2.8.5",
       "dotenv": "^8.0.0",
+      "eslint": "^5.16.0",
+      "eslint-config-airbnb-base": "^13.1.0",
+      "eslint-plugin-import": "^2.18.0",
       "express": "^4.17.1",
       "mocha": "^6.1.4",
       "nyc": "^14.1.1",
@@ -64,10 +68,7 @@ npm manifest:
       "@babel/core": "^7.4.5",
       "@babel/node": "^7.4.5",
       "@babel/preset-env": "^7.4.5",
-      "coveralls": "^3.0.4",
-      "eslint": "^5.16.0",
-      "eslint-config-airbnb-base": "^13.1.0",
-      "eslint-plugin-import": "^2.17.3"
+      "coveralls": "^3.0.4"
     }
   }
 
@@ -891,6 +892,11 @@ Lockfile:
     dependencies:
       tweetnacl "^0.14.3"
   
+  bcryptjs@^2.4.3:
+    version "2.4.3"
+    resolved "https://registry.yarnpkg.com/bcryptjs/-/bcryptjs-2.4.3.tgz#9ab5627b93e60621ff7cdac5da9733027df1d0cb"
+    integrity sha1-mrVie5PmBiH/fNrF2pczAn3x0Ms=
+  
   bluebird@^3.5.0, bluebird@^3.5.3:
     version "3.5.5"
     resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.5.tgz#a8d0afd73251effbbd5fe384a77d73003c17a71f"
@@ -1481,10 +1487,10 @@ Lockfile:
       debug "^2.6.8"
       pkg-dir "^2.0.0"
   
-  eslint-plugin-import@^2.17.3:
-    version "2.17.3"
-    resolved "https://registry.yarnpkg.com/eslint-plugin-import/-/eslint-plugin-import-2.17.3.tgz#00548b4434c18faebaba04b24ae6198f280de189"
-    integrity sha512-qeVf/UwXFJbeyLbxuY8RgqDyEKCkqV7YC+E5S5uOjAp4tOc8zj01JP3ucoBM8JcEqd1qRasJSg6LLlisirfy0Q==
+  eslint-plugin-import@^2.18.0:
+    version "2.18.0"
+    resolved "https://registry.yarnpkg.com/eslint-plugin-import/-/eslint-plugin-import-2.18.0.tgz#7a5ba8d32622fb35eb9c8db195c2090bd18a3678"
+    integrity sha512-PZpAEC4gj/6DEMMoU2Df01C5c50r7zdGIN52Yfi7CvvWaYssG7Jt5R9nFG5gmqodxNOz9vQS87xk6Izdtpdrig==
     dependencies:
       array-includes "^3.0.3"
       contains-path "^0.1.0"
