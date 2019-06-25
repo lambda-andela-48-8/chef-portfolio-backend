@@ -6,8 +6,17 @@ cache:
   directories:
     - 'node_modules'
 
+services:
+  - postgresql
+
+before_script:
+  - psql -c 'create database chef_test;' -U postgres
+
 before_install:
   - 'npm install'
 
 script:
   - 'npm run test'
+
+after_success:
+  - 'npm run coverage'
