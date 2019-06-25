@@ -38,6 +38,43 @@ class UserController {
       });
     }
   }
+
+  static async loginUser(req, res) {
+    const { email, password } = req.body;
+    if (!email || !password) {
+      return res.status(422).json({
+        status: 'failed',
+        error: 'email and password required to login'
+      });
+    }
+    try {
+      const foundUser = await User.findOne({ where: { email } });
+      if (!foundUser) {
+        return res.status(404).json({
+          status: 'failed',
+          error: 'email or password is incorrect'
+        });
+      }
+      if (foundUser.comparePassword(password, foundUser)) {
+        const { id, firstName } = foundUser;
+        return res.status(200).json({
+          status: 'success',
+          data: { id, firstName }
+        });
+      }
+      if (!(foundUser.comparePassword(password, foundUser))) {
+        return res.status(404).json({
+          status: 'failed',
+          error: 'email or password is incorrect'
+        });
+      }
+    } catch (error) {
+      return res.status(422).json({
+        status: 'failed',
+        error: 'failed to login user'
+      });
+    }
+  }
 }
 
 export default UserController;
