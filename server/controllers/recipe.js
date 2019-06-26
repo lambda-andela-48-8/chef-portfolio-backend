@@ -23,6 +23,7 @@ class recipeController {
         });
       }
       const createdRecipe = await user.createRecipe({
+        chefName: `${user.firstName} ${user.lastName}`,
         title,
         image,
         mealType,

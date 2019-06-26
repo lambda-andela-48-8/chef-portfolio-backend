@@ -69,6 +69,7 @@ describe('POST /api/recipe', () => {
         expect(res.status).to.eql(201);
         expect(res.body.status).to.eql('success');
         expect(res.body.data).to.have.property('id');
+        expect(res.body.data).to.have.property('chefName');
         expect(res.body.data).to.have.property('title');
         expect(res.body.data).to.have.property('userId');
         expect(res.body.data).to.have.property('mealType');

@@ -2,6 +2,7 @@
 
 module.exports = {
   up: queryInterface => queryInterface.bulkInsert('Recipes', [{
+    chefName: 'Tunde',
     title: 'Borito',
     image: 'http',
     mealType: 'Lunch',
