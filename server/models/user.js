@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     {},
   );
   User.prototype.encryptPassword = password => bcrypt.hashSync(password, bcrypt.genSaltSync(10));
+  User.prototype.comparePassword = (password, user) => bcrypt.compareSync(password, user.password);
 
   User.beforeCreate((user) => {
     user.password = user.encryptPassword(user.password);
