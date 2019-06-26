@@ -14,7 +14,7 @@ const verifyToken = async (req, res, next) => {
   const token = req.headers['x-access-token'] || req.headers.authorization;
   if (!token) {
     return res.status(401).json({
-      status: 'Failed',
+      status: 'failed',
       error: 'Unathorized, token must be provided',
     });
   }
