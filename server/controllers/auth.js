@@ -1,4 +1,9 @@
 import models from '../models/index';
+// import tokenHandler from '../utils/tokenHandler';
+import tokenHandler from '../utils/tokenHandler';
+
+require('dotenv').config();
+
 
 const { User } = models;
 
@@ -27,9 +32,14 @@ class UserController {
         firstName,
         lastName,
       });
+      const token = await tokenHandler.generateToken(newUser);
       res.status(201).json({
         status: 'success',
-        data: newUser,
+        data: {
+          id: newUser.id,
+          name: newUser.firstName,
+          token,
+        },
       });
     } catch (error) {
       res.status(422).json({
@@ -49,6 +59,7 @@ class UserController {
     }
     try {
       const foundUser = await User.findOne({ where: { email } });
+      const token = await tokenHandler.generateToken(foundUser);
       if (!foundUser) {
         return res.status(404).json({
           status: 'failed',
@@ -59,7 +70,7 @@ class UserController {
         const { id, firstName } = foundUser;
         return res.status(200).json({
           status: 'success',
-          data: { id, firstName }
+          data: { id, name: firstName, token }
         });
       }
       if (!(foundUser.comparePassword(password, foundUser))) {

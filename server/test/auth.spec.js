@@ -80,7 +80,7 @@ describe('POST /api/auth/login', () => {
         expect(res.status).to.eql(200);
         expect(res.body.status).to.eql('success');
         expect(res.body.data).have.property('id');
-        expect(res.body.data).have.property('firstName');
+        expect(res.body.data).have.property('name');
         done();
       });
   });
