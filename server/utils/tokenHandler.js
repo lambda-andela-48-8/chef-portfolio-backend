@@ -9,6 +9,28 @@ const generateToken = (user) => {
     return token;
   } catch (error) { }
 };
+
+const verifyToken = async (req, res, next) => {
+  const token = req.headers['x-access-token'] || req.headers.authorization;
+  if (!token) {
+    return res.status(401).json({
+      status: 'failed',
+      error: 'Unathorized, token must be provided',
+    });
+  }
+  try {
+    const user = await jwt.verify(token, process.env.SECRET_KEY);
+    if (!user) {
+      return res.status(404).json({
+        status: 'failed',
+        error: 'unable to authenticate token',
+      });
+    }
+    req.user = user;
+    next();
+  } catch (error) { }
+};
 module.exports = {
   generateToken,
+  verifyToken
 };

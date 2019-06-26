@@ -25,6 +25,7 @@ module.exports = (sequelize, DataTypes) => {
 
   User.associate = (models) => {
     // associations can be defined here
+    User.hasMany(models.Recipe, { foreignKey: 'userId', as: 'recipes' }, { onDelete: 'CASCADE', onUpdate: 'CASCADE' });
   };
   return User;
 };

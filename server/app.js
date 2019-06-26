@@ -2,6 +2,7 @@ import express from 'express';
 import 'dotenv/config';
 import cors from 'cors';
 import authRoutes from './routes/auth';
+import recipeRoutes from './routes/recipe';
 
 const app = express();
 
@@ -10,6 +11,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use('/api', authRoutes);
+app.use('/api', recipeRoutes);
 
 app.get('/', (req, res) => {
   res.status(200).json({
