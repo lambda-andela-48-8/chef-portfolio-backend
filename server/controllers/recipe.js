@@ -62,6 +62,28 @@ class recipeController {
       });
     }
   }
+
+  static async getRecipe(req, res) {
+    const { recipeId } = req.params;
+    try {
+      const recipe = await Recipe.findByPk(recipeId);
+      if (!recipe) {
+        return res.status(404).json({
+          status: 'failed',
+          error: 'recipe not found',
+        });
+      }
+      return res.status(200).json({
+        status: 'success',
+        data: recipe
+      });
+    } catch (error) {
+      return res.status(400).json({
+        status: 'failed',
+        error: 'unable to get recipe'
+      });
+    }
+  }
 }
 
 export default recipeController;
