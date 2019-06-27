@@ -1,6 +1,6 @@
 import models from '../models/index';
 
-const { User } = models;
+const { Recipe, User } = models;
 
 class recipeController {
   static async postRecipe(req, res) {
@@ -44,6 +44,21 @@ class recipeController {
       return res.status(400).json({
         status: 'failed',
         error: 'unable to post recipe'
+      });
+    }
+  }
+
+  static async getRecipes(req, res) {
+    try {
+      const recipes = await Recipe.findAll();
+      return res.status(200).json({
+        status: 'success',
+        data: recipes
+      });
+    } catch (error) {
+      return res.status(400).json({
+        status: 'failed',
+        error: 'unable to get recipes'
       });
     }
   }

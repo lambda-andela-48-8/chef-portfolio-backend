@@ -79,3 +79,20 @@ describe('POST /api/recipe', () => {
       });
   });
 });
+
+describe('GET api/recipe', () => {
+  it('should return all recipes', (done) => {
+    chai.request(server)
+      .get('/api/recipe')
+      .end((err, res) => {
+        expect(res.status).to.eql(200);
+        expect(res.body.status).to.eql('success');
+        expect(res.body.data).to.be.an('array');
+        expect(res.body.data[0]).to.have.property('id');
+        expect(res.body.data[0]).to.have.property('title');
+        expect(res.body.data[0]).to.have.property('chefName');
+        expect(res.body.data[0]).to.have.property('mealType');
+        done();
+      });
+  });
+});
