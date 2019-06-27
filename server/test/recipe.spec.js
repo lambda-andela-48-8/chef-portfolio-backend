@@ -96,3 +96,30 @@ describe('GET api/recipe', () => {
       });
   });
 });
+
+describe('GET /api/recipe/:recipeId', () => {
+  it('should return error when recipe is not found', (done) => {
+    chai.request(server)
+      .get(`/api/recipe/${99}`)
+      .end((err, res) => {
+        expect(res.status).to.eql(404);
+        console.log('TCL: res.status', res.status);
+        // expect(res.body.status).to.eql('failed');
+        expect(res.body.error).to.eql('recipe not found');
+        done();
+      });
+  });
+  it('should return the found recipe', (done) => {
+    chai.request(server)
+      .get(`/api/recipe/${1}`)
+      .end((err, res) => {
+        expect(res.status).to.eql(200);
+        expect(res.body.status).to.eql('success');
+        expect(res.body.data).to.have.property('id');
+        expect(res.body.data).to.have.property('chefName');
+        expect(res.body.data).to.have.property('title');
+        expect(res.body.data).to.have.property('mealType');
+        done();
+      });
+  });
+});
